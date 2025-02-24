@@ -6,11 +6,12 @@ import uvicorn
 import json
 import asyncio
 import os
-from utils.pdc import login_and_get_token  # Ensure pdc.py contains the function
+# Ensure pdc.py contains the function
+from utils.pdc import login_and_get_token, extract_text_from_pdf_bytes
+from llm import create_sheet
 from pydantic import BaseModel
 from typing import Optional
-from io import BytesIO
-from fastapi.responses import StreamingResponse
+import openai
 
 
 load_dotenv()
@@ -42,7 +43,7 @@ def change_name(data):
         name += data['middleName']
     if data['suffix']:
         name += ', ' + data['suffix']
-    
+
     return name
 
 
@@ -81,13 +82,25 @@ class UserDetails(BaseModel):
     username: str
     birth_date: str
     fid: Optional[str] = None
+    token: Optional[str] = None
+
+
+@app.get("/get-token")
+async def get_token():
+    token = await asyncio.to_thread(login_and_get_token)
+    return {"token": token}
 
 
 @app.post("/get-pdf-data")
 async def get_pdf_data(user: UserDetails):
-    """Fetches the PDF data from FSMB API after login and returns it as a file."""
-    token = await asyncio.to_thread(login_and_get_token)
+    """Fetches the PDF data from FSMB API after login and extracts text."""
+    if user.token:
+        token = user.token
+    else:
+        token = await asyncio.to_thread(login_and_get_token)
+    
     roasters = await get_roasters(token)
+
     if not roasters:
         raise HTTPException(
             status_code=401, detail="Failed to retrieve roasters.")
@@ -118,13 +131,20 @@ async def get_pdf_data(user: UserDetails):
         response = requests.post(URL, headers=headers, json=data)
         response.raise_for_status()
 
-        # Return PDF as a response
-        return StreamingResponse(BytesIO(response.content), media_type="application/pdf",
-                                 headers={"Content-Disposition": "attachment; filename=report.pdf"})
+        # Extract text from PDF bytes
+        pdf_text = extract_text_from_pdf_bytes(response.content)
 
+        res = create_sheet(pdf_text)
+
+        return {'data': res,
+                "token": token if not user.token else None}
     except requests.exceptions.RequestException as e:
         raise HTTPException(
             status_code=500, detail=f"Failed to fetch PDF data: {e}")
+
+    except Exception as e:
+        raise HTTPException(
+            status_code=500, detail=f"Error processing PDF: {e}")
 
 
 if __name__ == "__main__":
