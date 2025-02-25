@@ -1,10 +1,24 @@
 from openai import OpenAI
 from pydantic import BaseModel
 from typing import List, Optional
+import json
+from dateutil import parser
+from datetime import timezone
+from dotenv import load_dotenv
+load_dotenv()
 
+def parse_to_iso8601(date_str):
+    try:
+        # Parse the date string into a datetime object
+        dt = parser.parse(date_str)
+        # Convert to UTC and format as ISO 8601 string
+        return dt.astimezone(timezone.utc).isoformat()
+    except (ValueError, OverflowError) as e:
+        return None
 
 class Row(BaseModel):
     state: str
+    state_code: str
     license_number: str
     issue_date: str
     expiration_date: str
@@ -20,7 +34,7 @@ class UserData(BaseModel):
 
 class Response(BaseModel):
     user_data: UserData
-    rows: List[Row]
+    licenses: List[Row]
 
 
 PROMPT_TEMPLATE = """
@@ -86,7 +100,18 @@ def create_sheet(context: str):
         response_format=Response,
         temperature=0.0,
     )
-    
-    response_text = completion.choices[0].message.parsed
 
-    return response_text
+    response_data = completion.choices[0].message.parsed
+    
+    with open("constants/professions.json", "r") as file:
+        professions = json.load(file)
+        for profession in professions:
+            if  response_data.user_data.profession == profession["abbrev"]:
+                response_data.user_data.profession = profession["id"]
+                break
+    
+    for license in response_data.licenses:
+        license.issue_date = parse_to_iso8601(license.issue_date)
+        license.expiration_date = parse_to_iso8601(license.expiration_date)
+
+    return response_data.model_dump()

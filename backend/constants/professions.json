@@ -1,0 +1,362 @@
+[
+  {
+    "name": "Anesthesiologist",
+    "abbrev": "ANES",
+    "id": "anesthesiologist",
+    "type": "allied"
+  },
+  {
+    "name": "Athletic Trainer",
+    "abbrev": "ATC",
+    "id": "athletic_trainer",
+    "type": "allied"
+  },
+  {
+    "name": "Audiologist",
+    "abbrev": "AUD",
+    "id": "audiologist",
+    "type": "allied"
+  },
+  {
+    "name": "Cardiovascular Technician",
+    "abbrev": "CVT",
+    "id": "cardiovascular_technician",
+    "type": "allied"
+  },
+  {
+    "name": "Chiropractor",
+    "abbrev": "DC",
+    "id": "chiropractor",
+    "type": "doctors"
+  },
+  {
+    "name": "Dental Assistant",
+    "abbrev": "RDA",
+    "id": "dental_assistant",
+    "type": "allied"
+  },
+  {
+    "name": "Dental Hygienist",
+    "abbrev": "RDH",
+    "id": "dental_hygienist",
+    "type": "allied"
+  },
+  {
+    "name": "Dentist",
+    "abbrev": "DMD",
+    "id": "dentist",
+    "type": "doctors"
+  },
+  {
+    "name": "Dermatologist",
+    "abbrev": "DERM",
+    "id": "dermatologist",
+    "type": "doctors"
+  },
+  {
+    "name": "Diagnostic Medical Sonographer",
+    "abbrev": "RDMS",
+    "id": "diagnostic_medical_sonographer",
+    "type": "allied"
+  },
+  {
+    "name": "Dietetic Technician",
+    "abbrev": "DTR",
+    "id": "dietetic_technician",
+    "type": "allied"
+  },
+  {
+    "name": "Dietitian",
+    "abbrev": "RD",
+    "id": "dietitian",
+    "type": "allied"
+  },
+  {
+    "name": "Doctor of Dental Surgery",
+    "abbrev": "DDS",
+    "id": "dental_surgery_doctor",
+    "type": "doctors"
+  },
+  {
+    "name": "Doctor of Osteopathic Medicine",
+    "abbrev": "DO",
+    "id": "osteopathic_doctor",
+    "type": "doctors"
+  },
+  {
+    "name": "Emergency Medical Technician",
+    "abbrev": "EMT",
+    "id": "emergency_medical_technician",
+    "type": "allied"
+  },
+  {
+    "name": "Genetic Counselor",
+    "abbrev": "CGC",
+    "id": "genetic_counselor",
+    "type": "allied"
+  },
+  {
+    "name": "Home Health Aides",
+    "abbrev": "HHA",
+    "id": "home_health_aides",
+    "type": "nursing"
+  },
+  {
+    "name": "Licensed Practical Nurse",
+    "abbrev": "LPN",
+    "id": "registered_practical_nurse",
+    "type": "nursing"
+  },
+  {
+    "name": "Massage Therapist",
+    "abbrev": "LMT",
+    "id": "massage_therapist",
+    "type": "allied"
+  },
+  {
+    "name": "Medical and Clinical Laboratory Technician",
+    "abbrev": "CLT",
+    "id": "medical_laboratory_technician",
+    "type": "allied"
+  },
+  {
+    "name": "Medical Assistant ",
+    "abbrev": "MA",
+    "id": "medical_assistant",
+    "type": "allied"
+  },
+  {
+    "name": "Medical Doctor",
+    "abbrev": "MD",
+    "id": "medical_doctor",
+    "type": "doctors"
+  },
+  {
+    "name": "Medical Dosimetrist",
+    "abbrev": "CMD",
+    "id": "medical_dosimetrist",
+    "type": "allied"
+  },
+  {
+    "name": "Nuclear Medicine Technologist",
+    "abbrev": "CNMT",
+    "id": "nuclear_medicine_technologist",
+    "type": "allied"
+  },
+  {
+    "name": "Nurse Anesthetist",
+    "abbrev": "CRNA",
+    "id": "nurse_anesthetist",
+    "type": "nursing"
+  },
+  {
+    "name": "Nurse Midwife",
+    "abbrev": "CNM",
+    "id": "nurse_midwife",
+    "type": "nursing"
+  },
+  {
+    "name": "Nurse Practitioner",
+    "abbrev": "NP",
+    "id": "nurse_practitioner",
+    "type": "nursing"
+  },
+  {
+    "name": "Nursing Assistant",
+    "abbrev": "CNA",
+    "id": "nursing_assistant",
+    "type": "nursing"
+  },
+  {
+    "name": "Occupational Therapist",
+    "abbrev": "OT",
+    "id": "occupational_therapist",
+    "type": "allied"
+  },
+  {
+    "name": "Occupational Therapy Assistant",
+    "abbrev": "OTA",
+    "id": "occupational_therapy_assistant",
+    "type": "allied"
+  },
+  {
+    "name": "Ophthalmic Medical Technician",
+    "abbrev": "COT",
+    "id": "ophthalmic_medical_technician",
+    "type": "allied"
+  },
+  {
+    "name": "Optician",
+    "abbrev": "OPT",
+    "id": "optician",
+    "type": "doctors"
+  },
+  {
+    "name": "Optometrist",
+    "abbrev": "OD",
+    "id": "optometrist",
+    "type": "doctors"
+  },
+  {
+    "name": "Orthodontist",
+    "abbrev": "DMD",
+    "id": "orthodontist",
+    "type": "doctors"
+  },
+  {
+    "name": "Orthotist",
+    "abbrev": "CO",
+    "id": "orthotist",
+    "type": "allied"
+  },
+  {
+    "name": "Prosthetist",
+    "abbrev": "CP",
+    "id": "prosthetist",
+    "type": "allied"
+  },
+  {
+    "name": "Paramedic",
+    "abbrev": "PM",
+    "id": "paramedic",
+    "type": "allied"
+  },
+  {
+    "name": "Pharmacist",
+    "abbrev": "PharmD",
+    "id": "doctor_of_pharmacy",
+    "type": "allied"
+  },
+  {
+    "name": "Pharmacy Technician",
+    "abbrev": "RPhT",
+    "id": "pharmacy_technician",
+    "type": "allied"
+  },
+  {
+    "name": "Phlebotomist",
+    "abbrev": "PBT",
+    "id": "phlebotomist",
+    "type": "allied"
+  },
+  {
+    "name": "Physical Therapist Assistant",
+    "abbrev": "PTA",
+    "id": "physical_therapist_assistant",
+    "type": "allied"
+  },
+  {
+    "name": "Physical Therapist",
+    "abbrev": "PT",
+    "id": "physician_therapist",
+    "type": "allied"
+  },
+  {
+    "name": "Physician Assistant",
+    "abbrev": "PA",
+    "id": "physician_assistant",
+    "type": "allied"
+  },
+  {
+    "name": "Pathologist",
+    "abbrev": "PATH",
+    "id": "pathologist",
+    "type": "doctors"
+  },
+  {
+    "name": "Podiatrist",
+    "abbrev": "DPM",
+    "id": "pediatric_medicine_doctor",
+    "type": "doctors"
+  },
+  {
+    "name": "Prosthodontist",
+    "abbrev": "ACP",
+    "id": "prosthodontist",
+    "type": "allied"
+  },
+  {
+    "name": "Psychiatric Technician",
+    "abbrev": "NCPT",
+    "id": "psychiatric_technician",
+    "type": "allied"
+  },
+  {
+    "name": "Psychiatrist",
+    "abbrev": "PSYCH",
+    "id": "psychiatrist",
+    "type": "allied"
+  },
+  {
+    "name": "Radiation Therapist",
+    "abbrev": "RTx",
+    "id": "radiation_therapist",
+    "type": "allied"
+  },
+  {
+    "name": "Radiologic Technician",
+    "abbrev": "RT",
+    "id": "radiologic_technician",
+    "type": "allied"
+  },
+  {
+    "name": "Radiologist",
+    "abbrev": "RADL",
+    "id": "radiologist",
+    "type": "doctors"
+  },
+  {
+    "name": "Registered Nurse",
+    "abbrev": "RN",
+    "id": "registered_nurse",
+    "type": "nursing"
+  },
+  {
+    "name": "Registered Pharmacist",
+    "abbrev": "RPh",
+    "id": "registered_pharmacist",
+    "type": "allied"
+  },
+  {
+    "name": "Respiratory Therapist",
+    "abbrev": "RRT",
+    "id": "respiratory_therapist",
+    "type": "allied"
+  },
+  {
+    "name": "Social Worker",
+    "abbrev": "LCSW",
+    "id": "social_worker",
+    "type": "allied"
+  },
+  {
+    "name": "Speech-Language Pathologist",
+    "abbrev": "SLP",
+    "id": "speech_pathologist",
+    "type": "allied"
+  },
+  {
+    "name": "Surgical Assistant",
+    "abbrev": "CSA",
+    "id": "surgical_assistant",
+    "type": "allied"
+  },
+  {
+    "name": "Surgical Technologist",
+    "abbrev": "CST",
+    "id": "surgical_technologist",
+    "type": "allied"
+  },
+  {
+    "name": "Veterinarian",
+    "abbrev": "DVM",
+    "id": "veterinarian",
+    "type": "allied"
+  },
+  {
+    "name": "Veterinary Technician",
+    "abbrev": "LVT",
+    "id": "veterinary_technician",
+    "type": "allied"
+  }
+]
