@@ -232,8 +232,8 @@ async def create_licence_entry(user: UserDetails):
             yield f"data: {{'progress': 60, 'step': 'process_data', 'message': 'Preparing provider information for CRM...'}}\n\n"
             
             provider = Provider(
-                firstName=licenceData["user_data"]["name"].split(",")[0],
-                lastName=licenceData["user_data"]["name"].split(",")[1],
+                firstName=licenceData["user_data"]["firstName"],
+                lastName=licenceData["user_data"]["lastName"],
                 email=user.email,
                 phoneNumber=user.phone,
                 profession=licenceData["user_data"]["profession"],

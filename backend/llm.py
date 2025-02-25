@@ -25,7 +25,8 @@ class Row(BaseModel):
 
 
 class UserData(BaseModel):
-    name: str
+    firstName: str
+    lastName: Optional[str] = None
     npi: str
     email: Optional[str]
     profession: str

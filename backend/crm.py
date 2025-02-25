@@ -13,7 +13,7 @@ load_dotenv()
 
 class Provider(BaseModel):
     firstName: str
-    lastName: str
+    lastName: Optional[str] = None
     email: str
     phoneNumber: str
     profession: str
