@@ -240,7 +240,7 @@ async def create_licence_entry(user: UserDetails):
                 phoneNumber=user.phone,
                 profession=licenceData["user_data"]["profession"],
                 npi=licenceData["user_data"]["npi"],
-                birthDate=licenceData["user_data"]["birth_date"],
+                birthDate=licenceData["user_data"]["birthDate"],
             )
             
             # Step 3: Adding Provider to CRM (75%)
