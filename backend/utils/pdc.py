@@ -56,7 +56,7 @@ def login_and_get_token():
             print("Waiting for login to complete...")
 
             # Wait for login to complete by checking URL change or dashboard presence
-            WebDriverWait(driver, 10).until(lambda d: local_storage_has_key(
+            WebDriverWait(driver, 30).until(lambda d: local_storage_has_key(
                 d, "02d544b8-5953-409e-acac-6e9dc1245c51-b2c_1_signin.47d5d385-8b25-48c4-87bc-719b6e01c6c2-pdcreports.b2clogin.com-idtoken-03c06422-233c-4bba-b656-9f61071e6633----"))
 
             print("Login successful!")
