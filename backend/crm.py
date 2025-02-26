@@ -29,6 +29,7 @@ class Licenses(BaseModel):
 
 
 def get_crm_auth_token():
+    print("Logging in to CRM...")
     loginResponse = requests.post("https://api.licentiam.com/api/admin/auth/login", json={
         "data": {
             "email": os.getenv("CRM_EMAIL"),

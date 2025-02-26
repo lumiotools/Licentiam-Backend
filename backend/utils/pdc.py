@@ -31,25 +31,36 @@ def login_and_get_token():
     # Initialize WebDriver using context manager to ensure cleanup
     with webdriver.Chrome(options=chrome_options) as driver:
         try:
+            print("Logging into FSMB...")
             # Step 1: Open FSMB login page
             driver.get("https://pdc-reports.fsmb.org/")
 
+            print("Waiting for login form...")
+            
             # Wait for the login form
             WebDriverWait(driver, 10).until(
                 EC.presence_of_element_located((By.NAME, "Username")))
+            
+            print("Filling in login details...")
 
             # Fill in login details
             username_field = driver.find_element(By.NAME, "Username")
             password_field = driver.find_element(By.NAME, "Password")
+            
+            print("Logging in...")
 
             username_field.send_keys(os.getenv("FSMB_USERNAME"))
             password_field.send_keys(os.getenv("FSMB_PASSWORD"))
             password_field.send_keys(Keys.RETURN)
+            
+            print("Waiting for login to complete...")
 
             # Wait for login to complete by checking URL change or dashboard presence
             WebDriverWait(driver, 10).until(lambda d: local_storage_has_key(
                 d, "02d544b8-5953-409e-acac-6e9dc1245c51-b2c_1_signin.47d5d385-8b25-48c4-87bc-719b6e01c6c2-pdcreports.b2clogin.com-idtoken-03c06422-233c-4bba-b656-9f61071e6633----"))
 
+            print("Login successful!")
+            
             # Step 2: Extract local storage data
             raw_local_storage_data = driver.execute_script("""
                 let data = {};
@@ -58,17 +69,27 @@ def login_and_get_token():
                 }
                 return data;
             """)
+            
+            # Parse local storage data
+            
+            print("Extracting token...")
 
             parsed_local_storage_data = {}
             for key, value in raw_local_storage_data.items():
+                print(f"Key: {key}, Value: {value}")
                 try:
+                    # Try to parse as JSON
+                    print(f"Trying to parse JSON: {key}")
                     parsed_local_storage_data[key] = json.loads(value)
                 except (json.JSONDecodeError, TypeError):
                     # Keep as string if not JSON
+                    print(f"Failed to parse JSON: {key}")
                     parsed_local_storage_data[key] = value
 
             for key, value in parsed_local_storage_data.items():
+                print(f"Key: {key}, Value: {value}")
                 if isinstance(value, dict) and value.get("credentialType") == "IdToken":
+                    print("Found token!")
                     token = value.get("secret")
                     print(str(token))
                     break

@@ -113,7 +113,7 @@ async def get_pdf_data(user: UserDetails):
     # Find the user in the roasters list
     rosterEntryId = next(
         (roster['rosterEntryId'] for roster in roasters
-         if roster['name'] == user.username and roster['displayBirthDate'] == user.birth_date),
+         if f"{roster['lastName']}, {roster['firstName']} {roster['middleName']}".strip() == user.username and roster['displayBirthDate'] == user.birth_date),
         None
     )
 
@@ -191,7 +191,7 @@ async def create_licence_entry(user: UserDetails):
             # Find the user in the roasters list
             rosterEntryId = next(
                 (roster['rosterEntryId'] for roster in roasters
-                if roster['name'] == user.username and roster['displayBirthDate'] == user.birth_date),
+                if f"{roster['lastName']}, {roster['firstName']} {roster['middleName']}".strip() == user.username and roster['displayBirthDate'] == user.birth_date),
                 None
             )
 
