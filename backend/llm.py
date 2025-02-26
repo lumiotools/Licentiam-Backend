@@ -12,7 +12,7 @@ def parse_to_iso8601(date_str):
         # Parse the date string into a datetime object
         dt = parser.parse(date_str)
         # Convert to UTC and format as ISO 8601 string
-        return dt.astimezone(timezone.utc).isoformat()
+        return dt.isoformat()
     except (ValueError, OverflowError) as e:
         return None
 
@@ -88,7 +88,7 @@ The data includes:
 client = OpenAI()
 
 
-def create_sheet(context: str):
+def create_sheet(context: str, birthDate: str):
 
     messages = [
         {'role': "system", 'content': PROMPT_TEMPLATE},
@@ -115,4 +115,7 @@ def create_sheet(context: str):
         license.issue_date = parse_to_iso8601(license.issue_date)
         license.expiration_date = parse_to_iso8601(license.expiration_date)
 
-    return response_data.model_dump()
+    response_data = response_data.model_dump()
+    
+    response_data["user_data"]["birthDate"] = parse_to_iso8601(birthDate)
+    return response_data

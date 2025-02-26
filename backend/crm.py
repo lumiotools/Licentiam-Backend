@@ -18,6 +18,7 @@ class Provider(BaseModel):
     phoneNumber: str
     profession: str
     npi: str
+    birthDate: Optional[str] = None
 
 
 class Licenses(BaseModel):
@@ -261,7 +262,7 @@ def add_provider(provider: Provider, authToken: str):
                 "addressCity": None,
                 "addressState": None,
                 "addressZip": None,
-                "birthDate": None,
+                "birthDate": provider.birthDate,
                 "birthPlace": None,
                 "birthCertDocumentId": None,
                 "driversLicenseDocumentId": None,

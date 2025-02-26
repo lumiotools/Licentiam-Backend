@@ -141,7 +141,7 @@ async def get_pdf_data(user: UserDetails):
         # Extract text from PDF bytes
         pdf_text = extract_text_from_pdf_bytes(response.content)
 
-        res = create_sheet(pdf_text)
+        res = create_sheet(pdf_text, user.birth_date)
 
         return {'data': res,
                 "token": token if not user.pdcToken else None}
@@ -198,6 +198,8 @@ async def create_licence_entry(user: UserDetails):
             if not rosterEntryId:
                 raise HTTPException(
                     status_code=404, detail="User not found in roasters.")
+                
+            roaster = next((roster for roster in roasters if roster['rosterEntryId'] == rosterEntryId), None)
 
             # Step 1d: Requesting PDF report (35%)
             yield f"data: {{'progress': 35, 'step': 'request_report', 'message': 'Requesting license report from FSMB...'}}\n\n"
@@ -226,18 +228,19 @@ async def create_licence_entry(user: UserDetails):
             
             yield f"data: {{'progress': 50, 'step': 'process_pdf', 'message': 'Processing license information...'}}\n\n"
             
-            licenceData = create_sheet(pdf_text)
+            licenceData = create_sheet(pdf_text, user.birth_date)
             
             # Step 2: Processing Provider Data (60%)
             yield f"data: {{'progress': 60, 'step': 'process_data', 'message': 'Preparing provider information for CRM...'}}\n\n"
             
             provider = Provider(
-                firstName=licenceData["user_data"]["firstName"],
-                lastName=licenceData["user_data"]["lastName"],
+                firstName=roaster["firstName"],
+                lastName=roaster["lastName"],
                 email=user.email,
                 phoneNumber=user.phone,
                 profession=licenceData["user_data"]["profession"],
                 npi=licenceData["user_data"]["npi"],
+                birthDate=licenceData["user_data"]["birth_date"],
             )
             
             # Step 3: Adding Provider to CRM (75%)
